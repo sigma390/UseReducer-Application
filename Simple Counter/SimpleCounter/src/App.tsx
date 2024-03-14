@@ -18,15 +18,27 @@ function reducer(state:State, action:Action){
   const {type} = action;
   switch (type) {
     case 'incre' :{
-      //make a copy of state
+      //make a copy of state [...state]
+
+      return {...state, count:state.count+1}
+
+
+    }
+    case 'decre' :{
+      //make a copy of state [...state]
+
+      return {...state, count:state.count-1}
+
 
     }
 
+
       
-      break;
+     
   
     default:
-      break;
+      return state;
+     
   }
 
 }
@@ -43,11 +55,13 @@ function App() {
   return (  
     <>
     <div className='bg-purple-700  flex flex-col justify-center items-center h-screen'>
-      <p className='text-center'>the counter {}</p>
+      <p className='text-center'>the counter {state.count}</p>
       <button className='mt-4' onClick={()=>{
         dispatch({type:'incre'})
       }}>Increase</button>
-      <button className='mt-2'>Decrease</button>
+      <button onClick={()=>{
+        dispatch({type:'decre'})
+      }} className='mt-2'>Decrease</button>
     </div>
     </>
 
