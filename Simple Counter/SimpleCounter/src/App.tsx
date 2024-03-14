@@ -1,34 +1,57 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useReducer, useState } from 'react'
+
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+//type for state 
+type State = {
+  count:number,
+  error:string|null
+}
+// for action
+type Action = {
+  type:'incre' | 'decre'
 
-  return (
+}
+
+//reducer function
+function reducer(state:State, action:Action){
+  const {type} = action;
+  switch (type) {
+    case 'incre' :{
+      //make a copy of state
+
+    }
+
+      
+      break;
+  
+    default:
+      break;
+  }
+
+}
+
+
+
+
+function App() {
+  const[state, dispatch]= useReducer(reducer,{
+    count:0,
+    error:null
+  })
+
+  return (  
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div className='bg-purple-700  flex flex-col justify-center items-center h-screen'>
+      <p className='text-center'>the counter {}</p>
+      <button className='mt-4' onClick={()=>{
+        dispatch({type:'incre'})
+      }}>Increase</button>
+      <button className='mt-2'>Decrease</button>
+    </div>
     </>
+
+      
   )
 }
 
